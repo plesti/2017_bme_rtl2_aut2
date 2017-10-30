@@ -14,11 +14,16 @@ import java.util.List;
  */
 class MinMaxWeatherApplication {
 
-    private final MinMaxValues minMaxValues = new MinMaxValues();
+    public final MinMaxValues minMaxValues = new MinMaxValues();
 
     public static void main(String[] args) {
+        // Collect minmax values
+        MinMaxWeatherApplication app = new MinMaxWeatherApplication();
+        app.start();
 
-        new MinMaxWeatherApplication().start();
+        // Start data provider REST server
+        MinMaxHttpServer server = new MinMaxHttpServer();
+        server.start(app.minMaxValues);
     }
 
     private void start() {
