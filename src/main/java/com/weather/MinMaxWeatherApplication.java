@@ -24,6 +24,8 @@ class MinMaxWeatherApplication {
     private void start() {
         System.out.println("Start reading cities from file...");
         List<City> cities = new CityReaderFromJson().readCitiesForCountry("hu");
+
+        collectInSingleThread(cities);
     }
 
     private void collectInSingleThread(List<City> cities) {

@@ -8,8 +8,10 @@ public class SingleThreadCollector implements TemperatureCollector {
 
     @Override
     public void checkAndCollectTemperatures(List<City> cities, MinMaxValues minMax) {
-
-        //TODO impl: feladat
-
+        for (City city: cities) {
+            TemperatureCollectorTask task = new TemperatureCollectorTask(city, minMax);
+            task.run();
+            System.out.println("RESULT: \n" + minMax);
+        }
     }
 }

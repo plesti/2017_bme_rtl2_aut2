@@ -29,13 +29,18 @@ public class TemperatureCollectorTask implements Runnable {
 
         if (minMax.getMinTempWeather() == null) {
             minMax.setMinTempWeather(w);
+        } else {
+            Float min_temp = minMax.getMinTempWeather().getMain().getTemp();
+            if (min_temp.compareTo(thisCityTemp) > 0) {
+                minMax.setMinTempWeather(w);
+            }
         }
         if (minMax.getMaxTempWeather() == null) {
             minMax.setMaxTempWeather(w);
+        } else {
+            Float max_temp = minMax.getMaxTempWeather().getMain().getTemp();
+            if (max_temp.compareTo(thisCityTemp) < 0)
+                minMax.setMaxTempWeather(w);
         }
-
-       //TODO impl: feladat
-
     }
-
 }
