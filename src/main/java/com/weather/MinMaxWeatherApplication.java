@@ -22,9 +22,8 @@ class MinMaxWeatherApplication {
     }
 
     private void start() {
-
-        //TODO impl: lásd hallgatói segédlet
-
+        System.out.println("Start reading cities from file...");
+        List<City> cities = new CityReaderFromJson().readCitiesForCountry("hu");
     }
 
     private void collectInSingleThread(List<City> cities) {
