@@ -25,7 +25,8 @@ class MinMaxWeatherApplication {
         System.out.println("Start reading cities from file...");
         List<City> cities = new CityReaderFromJson().readCitiesForCountry("hu");
 
-        collectInSingleThread(cities);
+//        collectInSingleThread(cities);
+        collectInMultiThread(cities);
     }
 
     private void collectInSingleThread(List<City> cities) {
@@ -39,4 +40,14 @@ class MinMaxWeatherApplication {
         System.out.println("Finished in " + (System.currentTimeMillis() - messaureTime) + "ms.");
     }
 
+    private void collectInMultiThread(List<City> cities) {
+        System.out.println("\n----------------------------------------------");
+        System.out.println(" Start requesting temperatures in parallel...");
+        System.out.println("----------------------------------------------");
+        long messaureTime = System.currentTimeMillis();
+
+        new MultiThreadCollector().checkAndCollectTemperatures(cities, minMaxValues);
+
+        System.out.println("Finished in " + (System.currentTimeMillis() - messaureTime) + "ms.");
+    }
 }

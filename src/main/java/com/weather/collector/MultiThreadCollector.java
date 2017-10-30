@@ -16,17 +16,17 @@ public class MultiThreadCollector implements TemperatureCollector {
     public void checkAndCollectTemperatures(List<City> cities, MinMaxValues minMaxToRefresh) {
 
         for (City city : cities) {
-            //TODO impl: feladat!
+            TemperatureCollectorTask task = new TemperatureCollectorTask(city, minMaxToRefresh);
+            executor.submit(task);
         }
-
         finishAndPrintResult(minMaxToRefresh);
-
     }
 
     private void finishAndPrintResult(MinMaxValues minMax) {
         try {
             executor.shutdown();
 
+            // A lekerdezesek befejezesere maximum 1 percet varunk
             boolean finishedInTime = executor.awaitTermination(1, TimeUnit.MINUTES);
 
             if (finishedInTime) {

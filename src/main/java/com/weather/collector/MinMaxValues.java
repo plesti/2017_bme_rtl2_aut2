@@ -5,22 +5,22 @@ import com.weather.openweather.json.temperature.Weather;
 
 public class MinMaxValues {
 
-    private Weather minTempWeather;
-    private Weather maxTempWeather;
+    private volatile Weather minTempWeather;
+    private volatile Weather maxTempWeather;
 
-    public Weather getMinTempWeather() {
+    public synchronized Weather getMinTempWeather() {
         return minTempWeather;
     }
 
-    public void setMinTempWeather(Weather minTempWeather) {
+    public synchronized void setMinTempWeather(Weather minTempWeather) {
         this.minTempWeather = minTempWeather;
     }
 
-    public Weather getMaxTempWeather() {
+    public synchronized Weather getMaxTempWeather() {
         return maxTempWeather;
     }
 
-    public void setMaxTempWeather(Weather maxTempWeather) {
+    public synchronized void setMaxTempWeather(Weather maxTempWeather) {
         this.maxTempWeather = maxTempWeather;
     }
 
